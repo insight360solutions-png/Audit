@@ -28,8 +28,8 @@ const hidden: CSSProperties = { visibility: "hidden" };
  */
 export function Typewriter({
   segments,
-  stepMs = 45,
-  startMs = 150,
+  stepMs = 30,
+  startMs = 0,
   className,
 }: {
   segments: TypewriterSegment[];

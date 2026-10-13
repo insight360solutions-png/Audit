@@ -36,7 +36,7 @@ export function Field({
 }
 
 export const inputClass =
-  "block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-navy-900 placeholder:text-slate-400 transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/15 focus:outline-none aria-[invalid=true]:border-red-400";
+  "block w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-navy-900 placeholder:text-slate-500 transition focus:border-teal-500 focus:ring-4 focus:ring-teal-500/15 focus:outline-none aria-[invalid=true]:border-red-400";
 
 export function Honeypot() {
   return (

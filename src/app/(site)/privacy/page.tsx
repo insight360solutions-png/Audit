@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/container";
 import { PageHero } from "@/components/sections/page-hero";
 import { getSiteSettings } from "@/lib/content";
-import { pageAlternates } from "@/lib/seo";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy notice",
+export const metadata: Metadata = pageMetadata({
+  title: "Privacy Notice",
   description: "How Insight.360° collects and uses personal information submitted through this website.",
-  alternates: pageAlternates("/privacy"),
-  robots: { index: false, follow: true },
-};
+  path: "/privacy",
+  noindex: true,
+});
 
 export default async function PrivacyPage() {
   const settings = await getSiteSettings();

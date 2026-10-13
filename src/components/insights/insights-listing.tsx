@@ -73,10 +73,10 @@ export function InsightsListing({
               </div>
             ) : (
               <>
-                {lead && !activeType && !activeTag ? <InsightCard insight={lead} featured /> : null}
+                {lead && !activeType && !activeTag ? <InsightCard insight={lead} featured headingLevel="h2" /> : null}
                 <div className={cn("grid gap-6 md:grid-cols-2", lead && !activeType && !activeTag && "mt-6")}>
                   {(lead && !activeType && !activeTag ? rest : insights).map((i) => (
-                    <InsightCard key={i.slug} insight={i} />
+                    <InsightCard key={i.slug} insight={i} headingLevel="h2" />
                   ))}
                 </div>
               </>
@@ -108,7 +108,7 @@ export function InsightsListing({
                       )}
                     >
                       {c.name}
-                      <span className="text-xs text-slate-400">{c.count}</span>
+                      <span className="text-xs text-slate-500">{c.count}</span>
                     </Link>
                   </li>
                 ))}

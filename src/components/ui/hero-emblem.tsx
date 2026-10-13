@@ -24,15 +24,15 @@ export function HeroEmblem({
       <RingMark className="drop-shadow-[0_24px_40px_rgb(7_54_101/0.18)]" />
       <div className="absolute inset-[19%] flex items-center justify-center">
         <Gear className="absolute inset-0 origin-center animate-spin-slow [animation-direction:reverse] [animation-duration:28s] drop-shadow-[0_10px_24px_rgb(7_54_101/0.18)] motion-reduce:animate-none" />
-        {/* Logo held upright inside the turning cog; multiply blend drops its white background */}
+        {/* Logo (transparent) held upright inside the turning cog */}
         <div className={cn("relative w-[66%] items-center justify-center", labelClassName)}>
           <Image
-            src="/brand/insight360-logo-480.webp"
+            src="/brand/insight360-logo-transparent-480.webp"
             alt=""
             width={480}
             height={480}
             sizes="(min-width: 1024px) 320px, 60vw"
-            className="size-full object-contain mix-blend-multiply"
+            className="size-full object-contain"
             priority
           />
         </div>

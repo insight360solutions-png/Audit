@@ -7,15 +7,15 @@ import { ToolsPreview } from "@/components/sections/tools-preview";
 import { BusinessLines } from "@/components/sections/business-lines";
 import { InsightsPreview } from "@/components/sections/insights-preview";
 import { CtaBand } from "@/components/sections/cta-band";
-import { JsonLd, pageAlternates, webPageJsonLd } from "@/lib/seo";
+import { JsonLd, webPageJsonLd, pageMetadata } from "@/lib/seo";
 import { getInsights, getPillars, getSiteSettings, getToolCollections } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "Who We Are | Insight.360° – Better Insight. Better Business.",
+export const metadata: Metadata = pageMetadata({
+  absoluteTitle: "Business Advisory, Governance & Risk in Mauritius | Insight.360°",
   description:
-    "Insight.360° is an independent business advisory practice in Mauritius taking a 360° perspective on performance, governance, risk, internal controls and compliance.",
-  alternates: pageAlternates("/"),
-};
+    "Independent business advisory in Mauritius: governance, risk management, internal controls, compliance and performance. Practical, proportionate advice.",
+  path: "/",
+});
 
 export default async function HomePage() {
   const [settings, pillars, insights, collections] = await Promise.all([

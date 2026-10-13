@@ -9,14 +9,14 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { ToolInterestForm } from "@/components/forms/tool-interest-form";
 import { routes } from "@/config/routes";
 import { getToolCollections } from "@/lib/content";
-import { JsonLd, abs, breadcrumbJsonLd, itemListJsonLd, pageAlternates, webPageJsonLd } from "@/lib/seo";
+import { JsonLd, abs, breadcrumbJsonLd, itemListJsonLd, webPageJsonLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Tools – Practical business, governance, risk and compliance toolkits",
+export const metadata: Metadata = pageMetadata({
+  title: "Governance, Risk & Compliance Tools and Templates",
   description:
-    "Insight.360° develops practical business tools: diagnostics, KPI dashboards, SOP toolkits, risk registers, compliance calendars and more. Register your interest ahead of launch.",
-  alternates: pageAlternates("/tools"),
-};
+    "Practical business, governance, risk and compliance tools from Insight.360° in Mauritius: diagnostics, KPI dashboards, SOP toolkits, risk registers and more.",
+  path: "/tools",
+});
 
 const support = [
   { icon: BookOpen, title: "User guides", text: "Step-by-step guidance for every tool." },
@@ -72,7 +72,7 @@ export default async function ToolsPage() {
                       <div>
                         <p className="font-semibold text-navy-900">{tool.name}</p>
                         {tool.description ? <p className="mt-0.5 text-sm text-slate-500">{tool.description}</p> : null}
-                        {tool.format ? <p className="mt-1 text-xs font-medium tracking-wide text-slate-400 uppercase">{tool.format}</p> : null}
+                        {tool.format ? <p className="mt-1 text-xs font-medium tracking-wide text-slate-500 uppercase">{tool.format}</p> : null}
                       </div>
                       <Badge tone={tool.status === "available" ? "teal" : "amber"} className="shrink-0">
                         {tool.status === "available" ? "Available" : "Coming soon"}
