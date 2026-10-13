@@ -13,8 +13,9 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "en",
     categories: ["business", "finance", "productivity"],
     icons: [
-      { src: "/icon", sizes: "64x64", type: "image/png" },
-      { src: "/apple-icon", sizes: "180x180", type: "image/png" },
+      { src: "/icon.png", sizes: "256x256", type: "image/png" },
+      { src: "/apple-icon.png", sizes: "180x180", type: "image/png" },
+      { src: "/brand/insight360-logo-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
     ],
   };
 }

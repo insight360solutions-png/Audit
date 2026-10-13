@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { ImageResponse } from "next/og";
 import { getInsight, insightTypeMeta } from "@/lib/content";
 
@@ -10,6 +12,8 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const insight = await getInsight(slug);
   const title = insight?.title ?? "Insight.360°";
   const kicker = insight ? `${insightTypeMeta[insight.type].verb} · ${insight.category}` : "Better Insight. Better Business.";
+  const logo = await readFile(path.join(process.cwd(), "public/brand/insight360-logo-512.png"));
+  const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -26,11 +30,12 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div style={{ width: 44, height: 44, borderRadius: 999, border: "7px solid #00afc3", borderRightColor: "transparent" }} />
-          <div style={{ display: "flex", fontSize: 36, fontWeight: 800 }}>
-            Insight<span style={{ color: "#00afc3" }}>.360°</span>
+        <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+          <div style={{ display: "flex", width: 96, height: 96, borderRadius: 20, background: "white", alignItems: "center", justifyContent: "center" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={logoSrc} width={84} height={84} alt="" />
           </div>
+          <div style={{ display: "flex", fontSize: 30, fontWeight: 700, color: "rgba(255,255,255,0.85)" }}>Insight.360° Insights</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
           <div style={{ fontSize: 22, letterSpacing: 4, textTransform: "uppercase", color: "#2ec4d4", fontWeight: 700 }}>{kicker}</div>

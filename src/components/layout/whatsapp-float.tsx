@@ -1,6 +1,5 @@
 import { WhatsappIcon } from "@/components/ui/brand-icons";
 import { routes } from "@/config/routes";
-import { siteConfig } from "@/config/site";
 
 /** Floating WhatsApp button pinned to the bottom-right of every page. */
 export function WhatsappFloat() {
@@ -9,7 +8,7 @@ export function WhatsappFloat() {
       href={routes.whatsapp()}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`Chat with us on WhatsApp (${siteConfig.whatsapp.display})`}
+      aria-label="Chat with us on WhatsApp"
       className="group fixed right-5 bottom-5 z-40 flex flex-row-reverse items-center gap-3 print:hidden"
     >
       <span className="relative flex size-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_-8px_rgb(37_211_102/0.7)] transition-transform duration-200 group-hover:scale-105 group-focus-visible:scale-105">

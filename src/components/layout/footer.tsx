@@ -16,7 +16,7 @@ export async function Footer() {
       <div className="pointer-events-none absolute -top-40 -right-40 size-[32rem] rounded-full bg-teal-500/10 blur-3xl" aria-hidden />
       <Container className="relative grid gap-12 py-16 lg:grid-cols-12 lg:gap-8">
         <div className="lg:col-span-4">
-          <Logo tone="light" withTagline />
+          <Logo tone="light" size="lg" />
           <p className="mt-6 max-w-sm text-[0.95rem] leading-relaxed">
             {settings.footerNote} We help organisations strengthen performance, governance, risk management, internal controls and compliance.
           </p>
@@ -58,14 +58,12 @@ export async function Footer() {
                 {settings.contact.email}
               </a>
             </li>
-            {settings.contact.whatsapp ? (
-              <li className="flex items-start gap-3">
-                <WhatsappIcon className="mt-0.5 size-4 shrink-0 text-teal-400" />
-                <a href={routes.whatsapp()} target="_blank" rel="noopener noreferrer" className="transition hover:text-teal-400">
-                  {settings.contact.whatsapp} (WhatsApp)
-                </a>
-              </li>
-            ) : null}
+            <li className="flex items-start gap-3">
+              <WhatsappIcon className="mt-0.5 size-4 shrink-0 text-teal-400" />
+              <a href={routes.whatsapp()} target="_blank" rel="noopener noreferrer" className="transition hover:text-teal-400">
+                Chat with us on WhatsApp
+              </a>
+            </li>
             <li className="flex items-start gap-3">
               <MapPin className="mt-0.5 size-4 shrink-0 text-teal-400" aria-hidden />
               <span>{settings.contact.addressLine ?? settings.contact.location}</span>

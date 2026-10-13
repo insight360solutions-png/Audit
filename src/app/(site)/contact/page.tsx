@@ -66,20 +66,18 @@ export default async function ContactPage({ searchParams }: Props) {
                   </a>
                 </span>
               </li>
-              {settings.contact.whatsapp ? (
-                <li className="flex items-start gap-4 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-card">
-                  <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#25D366]/10 text-[#1DA851]">
-                    <WhatsappIcon className="size-5" />
-                  </span>
-                  <span>
-                    <span className="block text-xs font-bold tracking-[0.16em] text-slate-500 uppercase">WhatsApp</span>
-                    <a href={routes.whatsapp()} target="_blank" rel="noopener noreferrer" className="mt-1 block font-semibold text-navy-900 hover:text-teal-600">
-                      {settings.contact.whatsapp}
-                    </a>
-                    <span className="block text-xs text-slate-500">Chat with an advisor</span>
-                  </span>
-                </li>
-              ) : null}
+              <li className="flex items-start gap-4 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-card">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#25D366]/10 text-[#1DA851]">
+                  <WhatsappIcon className="size-5" />
+                </span>
+                <span>
+                  <span className="block text-xs font-bold tracking-[0.16em] text-slate-500 uppercase">WhatsApp</span>
+                  <a href={routes.whatsapp()} target="_blank" rel="noopener noreferrer" className="mt-1 block font-semibold text-navy-900 hover:text-teal-600">
+                    Chat with an advisor
+                  </a>
+                  <span className="block text-xs text-slate-500">Opens WhatsApp with our number</span>
+                </span>
+              </li>
               {settings.contact.phone ? (
                 <li className="flex items-start gap-4 rounded-2xl border border-slate-200/80 bg-white p-5 shadow-card">
                   <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
