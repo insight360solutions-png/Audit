@@ -48,7 +48,13 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
   },
-  icons: { icon: "/icon", apple: "/apple-icon" },
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48 32x32 16x16" },
+      { url: "/icon.png", type: "image/png", sizes: "256x256" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   manifest: "/manifest.webmanifest",
   category: "business",
   // Search Console / Bing Webmaster ownership tokens, set per environment.

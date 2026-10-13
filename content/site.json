@@ -5,13 +5,20 @@
   "contact": {
     "email": "info@insight360.solutions",
     "location": "Mauritius",
-    "hours": "Monday to Friday, 09:00 – 17:00 (GMT+4)",
     "whatsapp": "+230 5250 7977"
   },
   "social": [
     {
       "platform": "linkedin",
-      "url": "https://www.linkedin.com/company/insight360-solutions"
+      "url": "https://www.linkedin.com/company/insight360mu"
+    },
+    {
+      "platform": "youtube",
+      "url": "https://www.youtube.com/@Insight360mu"
+    },
+    {
+      "platform": "facebook",
+      "url": "https://www.facebook.com/share/1J1wZ1yNMB/"
     }
   ],
   "footerNote": "Insight.360° is an independent business advisory practice based in Mauritius."

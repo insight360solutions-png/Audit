@@ -38,7 +38,7 @@ export function Header() {
         scrolled ? "border-slate-200 shadow-[0_6px_24px_-12px_rgb(7_54_101/0.25)]" : "border-transparent",
       )}
     >
-      <Container className="flex h-[4.5rem] items-center justify-between gap-6">
+      <Container className="flex h-[4.5rem] items-center justify-between gap-6 sm:h-20">
         <Logo />
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
@@ -90,7 +90,7 @@ export function Header() {
           open ? "block" : "hidden",
         )}
       >
-        <div className="absolute inset-x-0 top-full z-40 max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-slate-200 bg-white shadow-[0_24px_40px_-16px_rgb(7_54_101/0.3)]">
+        <div className="absolute inset-x-0 top-full z-40 max-h-[calc(100dvh-5rem)] overflow-y-auto border-t border-slate-200 bg-white shadow-[0_24px_40px_-16px_rgb(7_54_101/0.3)]">
           <Container className="flex flex-col gap-2 py-6">
             {primaryNav.map((item) => (
               <Link
