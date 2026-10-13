@@ -10,14 +10,14 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { routes } from "@/config/routes";
 import { getPillars, type Solution } from "@/lib/content";
 import { cn } from "@/lib/utils";
-import { JsonLd, abs, breadcrumbJsonLd, itemListJsonLd, pageAlternates, webPageJsonLd } from "@/lib/seo";
+import { JsonLd, abs, breadcrumbJsonLd, itemListJsonLd, webPageJsonLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Services – Business Advisory, Governance, Risk & Compliance",
+export const metadata: Metadata = pageMetadata({
+  title: "Advisory, Risk & Compliance Services in Mauritius",
   description:
-    "Eight focused advisory solutions across four connected pillars: Business Advisory, Governance, Risk and Compliance. Professional advice, practical improvement.",
-  alternates: pageAlternates("/services"),
-};
+    "Eight advisory solutions for organisations in Mauritius: business diagnostics, SOPs, KPIs, governance, risk, internal control, fraud and compliance reviews.",
+  path: "/services",
+});
 
 export default async function ServicesPage() {
   const pillars = await getPillars();

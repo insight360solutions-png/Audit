@@ -8,7 +8,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
-  const logo = await readFile(path.join(process.cwd(), "public/brand/insight360-logo-512.png"));
+  const logo = await readFile(path.join(process.cwd(), "public/brand/insight360-logo-light-512.png"));
   const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
 
   return new ImageResponse(
@@ -27,10 +27,7 @@ export default async function Image() {
           fontFamily: "sans-serif",
         }}
       >
-        <div style={{ display: "flex", width: 360, height: 360, borderRadius: 48, background: "white", alignItems: "center", justifyContent: "center", boxShadow: "0 30px 60px rgba(0,0,0,0.35)" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={logoSrc} width={320} height={320} alt="" />
-        </div>
+        <img src={logoSrc} width={380} height={380} alt="" />
         <div style={{ display: "flex", flexDirection: "column", gap: 20, maxWidth: 620 }}>
           <div style={{ fontSize: 30, color: "rgba(255,255,255,0.8)", lineHeight: 1.3 }}>
             Independent business advisory in Mauritius

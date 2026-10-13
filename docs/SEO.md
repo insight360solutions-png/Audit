@@ -13,8 +13,10 @@ and how to keep it that way as content grows.
 | Item | Where |
 | --- | --- |
 | Static, fast pages; no third-party scripts or fonts | whole site |
-| Unique `<title>` / meta description per page, title template | each `page.tsx` |
-| Canonical URL on every page; filtered Insights views canonicalise to the base list | `pageAlternates()` in `src/lib/seo.tsx` |
+| Keyword + locality titles (≤ ~64 chars) and meta descriptions (≤ 160 chars, mention Mauritius) | `pageMetadata()` in `src/lib/seo.tsx`, used by every `page.tsx` |
+| Per-page Open Graph / Twitter title, description, URL and image (Next does not inherit these from the layout) | `pageMetadata()` |
+| Canonical URL and `hreflang` (`en-MU`, `x-default`) on every page; filtered Insights views canonicalise to the base list | `pageAlternates()` |
+| Thin tag pages are `noindex, follow` and left out of the sitemap; category pages stay indexed | `insights/tag/[tag]/page.tsx`, `sitemap.ts` |
 | Open Graph + Twitter cards, generated OG images (site-wide and per insight) | `src/app/opengraph-image.tsx`, `insights/[slug]/opengraph-image.tsx` |
 | `sitemap.xml` covering pages, solutions, insights, categories and tags | `src/app/sitemap.ts` |
 | `robots.txt` allowing all crawlers (AI crawlers listed explicitly), blocking `/api` and `/admin` | `src/app/robots.ts` |
@@ -61,6 +63,37 @@ Validate with https://validator.schema.org and Google's Rich Results Test after 
 - `PostalAddress` (country MU), `areaServed`, `foundingLocation` and a `ContactPoint`
   with English and French in the organisation schema.
 - "Mauritius" appears in the home description, footer and contact page copy.
+
+## Measured quality (Lighthouse, mobile, production build)
+
+| Page | Performance | Accessibility | Best practices | SEO |
+| --- | --- | --- | --- | --- |
+| Home | 93 | 100 | 100 | 100 |
+| Services | 95 | 100 | 100 | 100 |
+| Service detail | 96 | 100 | 100 | 100 |
+| Tools | 93 | 100 | 100 | 100 |
+| Insights | 96 | 100 | 100 | 100 |
+| Insight article | 96 | 100 | 100 | 100 |
+| Contact | 93 | 100 | 100 | 100 |
+
+Text colours meet WCAG AA contrast (teal text `#007785`, grey text `#667080`, navy
+lettering on teal buttons). Layout shift is effectively zero. Lab LCP is about 3 s on
+Lighthouse's throttled mobile profile; field values on Vercel's CDN are usually lower.
+Re-run with `npx lighthouse <url> --view` after significant design changes.
+
+## What ranking on Google still depends on
+
+The site is technically ready; position in results is earned over time by signals
+outside the code:
+
+1. **Google Business Profile** with the same name, email and website (biggest local lever).
+2. **Backlinks and citations**: Business Mauritius, MCCI, professional bodies, partner
+   firms, LinkedIn articles linking back to insights.
+3. **Fresh, specific content**: one or two insights a month answering questions clients
+   actually ask, each linking to the relevant service page.
+4. **Search Console**: submit the sitemap, watch which queries show impressions, and
+   strengthen the pages ranking on page two.
+5. **Reviews** on the Business Profile from satisfied clients.
 
 ## Launch checklist
 

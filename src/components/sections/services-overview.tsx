@@ -29,9 +29,7 @@ export function ServicesOverview({ pillars }: { pillars: Pillar[] }) {
               href={`/services#${pillar.slug}`}
               className="group relative overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-8 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-teal-200 hover:shadow-card-hover"
             >
-              <span className="absolute top-6 right-7 font-display text-5xl font-extrabold text-navy-50 transition group-hover:text-teal-50">
-                0{i + 1}
-              </span>
+              <span aria-hidden data-n={`0${i + 1}`} className="absolute top-6 right-7 font-display text-5xl font-extrabold text-navy-50 transition group-hover:text-teal-50 before:content-[attr(data-n)]" />
               <div className="flex size-14 items-center justify-center rounded-2xl bg-navy-900 text-white transition group-hover:bg-teal-500">
                 <Icon name={pillar.icon} className="size-7" />
               </div>

@@ -7,14 +7,14 @@ import { routes } from "@/config/routes";
 import { ContactForm, type EnquiryOption } from "@/components/forms/contact-form";
 import { PageHero } from "@/components/sections/page-hero";
 import { getPillars, getSiteSettings } from "@/lib/content";
-import { JsonLd, breadcrumbJsonLd, pageAlternates, webPageJsonLd } from "@/lib/seo";
+import { JsonLd, breadcrumbJsonLd, webPageJsonLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact us – Let’s talk about your business",
+export const metadata: Metadata = pageMetadata({
+  title: "Contact Our Business Advisors in Mauritius",
   description:
-    "Get in touch with Insight.360° in Mauritius about business advisory, governance, risk management, internal controls or compliance.",
-  alternates: pageAlternates("/contact"),
-};
+    "Contact Insight.360° in Mauritius about business advisory, governance, risk management, internal controls or compliance. Email us or chat on WhatsApp.",
+  path: "/contact",
+});
 
 type Props = { searchParams: Promise<{ service?: string }> };
 
@@ -132,7 +132,7 @@ export default async function ContactPage({ searchParams }: Props) {
             <ol className="space-y-3">
               {steps.map((s, i) => (
                 <li key={s.title} className="flex items-start gap-3">
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-teal-500 text-xs font-bold text-white">{i + 1}</span>
+                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-teal-600 text-xs font-bold text-white">{i + 1}</span>
                   <span>
                     <span className="block font-semibold text-navy-900">{s.title}</span>
                     <span className="block text-sm text-slate-600">{s.text}</span>

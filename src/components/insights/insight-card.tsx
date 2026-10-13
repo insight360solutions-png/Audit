@@ -13,7 +13,17 @@ const typeTone: Record<Insight["type"], string> = {
   download: "from-slate-700 to-navy-900",
 };
 
-export function InsightCard({ insight, featured = false }: { insight: Insight; featured?: boolean }) {
+export function InsightCard({
+  insight,
+  featured = false,
+  headingLevel = "h3",
+}: {
+  insight: Insight;
+  featured?: boolean;
+  /** h2 on listing pages (cards sit directly under the page h1), h3 inside a titled section. */
+  headingLevel?: "h2" | "h3";
+}) {
+  const Heading = headingLevel;
   const meta = insightTypeMeta[insight.type];
   return (
     <article
@@ -46,11 +56,11 @@ export function InsightCard({ insight, featured = false }: { insight: Insight; f
             {insight.readingMinutes} min
           </span>
         </div>
-        <h3 className={cn("mt-3 leading-snug", featured ? "text-2xl" : "text-lg")}>
+        <Heading className={cn("mt-3 leading-snug", featured ? "text-2xl" : "text-lg")}>
           <Link href={routes.insight(insight.slug)} className="after:absolute after:inset-0">
             {insight.title}
           </Link>
-        </h3>
+        </Heading>
         <p className={cn("mt-3 text-slate-600", featured ? "text-base" : "line-clamp-3 text-sm leading-relaxed")}>{insight.excerpt}</p>
         <span className="mt-auto inline-flex items-center gap-1.5 pt-5 text-sm font-semibold text-teal-600 transition group-hover:text-navy-900">
           {meta.verb} now

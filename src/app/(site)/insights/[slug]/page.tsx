@@ -15,7 +15,7 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { routes } from "@/config/routes";
 import { siteConfig } from "@/config/site";
 import { getAllSolutions, getInsight, getInsights, getRelatedInsights, insightTypeMeta } from "@/lib/content";
-import { JsonLd, articleJsonLd, breadcrumbJsonLd, pageAlternates } from "@/lib/seo";
+import { JsonLd, articleJsonLd, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -29,20 +29,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const insight = await getInsight(slug);
   if (!insight) return {};
-  return {
+  return pageMetadata({
     title: insight.title,
     description: insight.excerpt,
-    alternates: pageAlternates(`/insights/${insight.slug}`),
+    path: `/insights/${insight.slug}`,
+    type: "article",
+    image: null,
     openGraph: {
-      type: "article",
-      title: insight.title,
-      description: insight.excerpt,
       publishedTime: insight.date,
       modifiedTime: insight.updated ?? insight.date,
+      authors: [insight.author],
       tags: insight.tags,
       section: insight.category,
     },
-  };
+  });
 }
 
 export default async function InsightPage({ params }: Props) {

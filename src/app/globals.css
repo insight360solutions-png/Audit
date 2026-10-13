@@ -13,7 +13,7 @@
   --color-navy-100: #dbe7f3;
   --color-navy-50: #f5f8fa;
 
-  --color-teal-600: #0092a3;
+  --color-teal-600: #007785; /* AA text on white (5.3:1) */
   --color-teal-500: #00afc3;
   --color-teal-400: #2ec4d4;
   --color-teal-100: #d3f1f5;
@@ -23,7 +23,7 @@
 
   --color-slate-700: #3e4653;
   --color-slate-600: #5b6573;
-  --color-slate-500: #7a8494;
+  --color-slate-500: #667080; /* AA text on white (5.0:1) */
   --color-slate-300: #cbd2dc;
   --color-slate-200: #e3e8ee;
   --color-slate-100: #f1f4f7;

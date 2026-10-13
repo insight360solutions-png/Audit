@@ -12,7 +12,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const insight = await getInsight(slug);
   const title = insight?.title ?? "Insight.360°";
   const kicker = insight ? `${insightTypeMeta[insight.type].verb} · ${insight.category}` : "Better Insight. Better Business.";
-  const logo = await readFile(path.join(process.cwd(), "public/brand/insight360-logo-512.png"));
+  const logo = await readFile(path.join(process.cwd(), "public/brand/insight360-logo-light-512.png"));
   const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
 
   return new ImageResponse(
@@ -31,10 +31,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <div style={{ display: "flex", width: 96, height: 96, borderRadius: 20, background: "white", alignItems: "center", justifyContent: "center" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={logoSrc} width={84} height={84} alt="" />
-          </div>
+          <img src={logoSrc} width={110} height={110} alt="" />
           <div style={{ display: "flex", fontSize: 30, fontWeight: 700, color: "rgba(255,255,255,0.85)" }}>Insight.360° Insights</div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>

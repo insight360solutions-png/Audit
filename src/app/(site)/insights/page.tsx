@@ -3,14 +3,14 @@ import { InsightsHero } from "@/components/insights/insights-hero";
 import { InsightsListing } from "@/components/insights/insights-listing";
 import { CtaBand } from "@/components/sections/cta-band";
 import { getInsightCategories, getInsightTags, insightTypeSchema, queryInsights } from "@/lib/content";
-import { JsonLd, abs, breadcrumbJsonLd, itemListJsonLd, pageAlternates, webPageJsonLd } from "@/lib/seo";
+import { JsonLd, abs, breadcrumbJsonLd, itemListJsonLd, webPageJsonLd, pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Insights – Articles, guides, videos and resources",
+export const metadata: Metadata = pageMetadata({
+  title: "Governance, Risk & Compliance Insights and Guides",
   description:
-    "Insight.360° Insights translates business, governance, risk and compliance topics into clear, useful and practical content: watch, read, learn and download.",
-  alternates: pageAlternates("/insights"),
-};
+    "Practical articles, guides, videos and checklists on governance, risk management, internal controls and compliance from Insight.360° in Mauritius.",
+  path: "/insights",
+});
 
 type Props = { searchParams: Promise<{ type?: string }> };
 

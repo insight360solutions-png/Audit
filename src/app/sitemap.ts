@@ -1,15 +1,11 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/config/site";
-import { getAllSolutions, getInsightCategories, getInsightTags, getInsights } from "@/lib/content";
+import { getAllSolutions, getInsightCategories, getInsights } from "@/lib/content";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url;
-  const [solutions, insights, categories, tags] = await Promise.all([
-    getAllSolutions(),
-    getInsights(),
-    getInsightCategories(),
-    getInsightTags(),
-  ]);
+  // Tag pages are noindex (thin), so they are deliberately not listed here.
+  const [solutions, insights, categories] = await Promise.all([getAllSolutions(), getInsights(), getInsightCategories()]);
   const latest = insights[0]?.date ? new Date(insights[0].date) : new Date();
 
   return [
@@ -20,7 +16,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/insights`, lastModified: latest, changeFrequency: "weekly", priority: 0.9 },
     ...insights.map((i) => ({ url: `${base}/insights/${i.slug}`, lastModified: new Date(i.updated ?? i.date), changeFrequency: "monthly" as const, priority: 0.7 })),
     ...categories.map((c) => ({ url: `${base}/insights/category/${c.slug}`, lastModified: latest, changeFrequency: "weekly" as const, priority: 0.5 })),
-    ...tags.map((t) => ({ url: `${base}/insights/tag/${t.slug}`, lastModified: latest, changeFrequency: "weekly" as const, priority: 0.3 })),
     { url: `${base}/contact`, lastModified: latest, changeFrequency: "yearly", priority: 0.8 },
   ];
 }

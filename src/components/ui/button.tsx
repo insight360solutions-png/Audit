@@ -13,7 +13,7 @@ const variants: Record<Variant, string> = {
   primary:
     "bg-navy-900 text-white shadow-[0_8px_20px_-8px_rgb(7_54_101/0.5)] hover:bg-navy-800 hover:-translate-y-0.5",
   accent:
-    "bg-teal-500 text-white shadow-[0_8px_20px_-8px_rgb(0_175_195/0.6)] hover:bg-teal-600 hover:-translate-y-0.5",
+    "bg-teal-500 text-navy-950 shadow-[0_8px_20px_-8px_rgb(0_175_195/0.6)] hover:bg-teal-400 hover:-translate-y-0.5",
   outline:
     "border border-navy-900/15 bg-white text-navy-900 hover:border-navy-900 hover:bg-navy-50",
   ghost: "text-navy-900 hover:bg-navy-50",

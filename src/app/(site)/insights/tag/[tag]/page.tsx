@@ -4,7 +4,7 @@ import { InsightsHero } from "@/components/insights/insights-hero";
 import { InsightsListing } from "@/components/insights/insights-listing";
 import { CtaBand } from "@/components/sections/cta-band";
 import { getInsightCategories, getInsightTags, queryInsights } from "@/lib/content";
-import { pageAlternates } from "@/lib/seo";
+import { JsonLd, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ tag: string }> };
 
@@ -17,11 +17,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { tag } = await params;
   const match = (await getInsightTags()).find((t) => t.slug === tag);
   if (!match) return {};
-  return {
-    title: `#${match.name} – Insights`,
-    description: `Insight.360° content tagged ${match.name}.`,
-    alternates: pageAlternates(`/insights/tag/${tag}`),
-  };
+  // Tag pages are thin by nature (one or two items): keep them out of the
+  // index but let crawlers follow their links to the articles.
+  return pageMetadata({
+    title: `${match.name} – Insights`,
+    description: `Insight.360° articles and guides tagged ${match.name}.`,
+    path: `/insights/tag/${tag}`,
+    noindex: true,
+  });
 }
 
 export default async function TagPage({ params }: Props) {
@@ -34,6 +37,12 @@ export default async function TagPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Insights", path: "/insights" },
+          { name: match.name, path: `/insights/tag/${tag}` },
+        ])}
+      />
       <InsightsHero
         title={
           <>

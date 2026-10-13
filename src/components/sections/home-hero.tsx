@@ -32,7 +32,7 @@ export function HomeHero({ descriptor }: { descriptor: string }) {
             />
           </h1>
           <p className="mt-7 max-w-xl animate-fade-up text-lg leading-relaxed text-slate-600 sm:text-xl [animation-delay:160ms]">
-            Insight.360° is an independent business advisory practice helping organisations strengthen performance,
+            Insight.360° is an independent business advisory practice in Mauritius, helping organisations strengthen performance,
             governance, risk management, internal controls and compliance.
           </p>
           <div className="mt-9 flex flex-wrap gap-3 animate-fade-up [animation-delay:240ms]">

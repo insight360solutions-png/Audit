@@ -11,7 +11,7 @@ import { CtaBand } from "@/components/sections/cta-band";
 import { InsightCard } from "@/components/insights/insight-card";
 import { routes } from "@/config/routes";
 import { getAllSolutions, getAllTools, getInsights, getSolution } from "@/lib/content";
-import { JsonLd, breadcrumbJsonLd, faqJsonLd, pageAlternates, serviceJsonLd, webPageJsonLd } from "@/lib/seo";
+import { JsonLd, breadcrumbJsonLd, faqJsonLd, serviceJsonLd, webPageJsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -24,11 +24,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const solution = await getSolution(slug);
   if (!solution) return {};
-  return {
-    title: `${solution.name} | ${solution.pillar.name}`,
-    description: solution.summary,
-    alternates: pageAlternates(`/services/${solution.slug}`),
-  };
+  return pageMetadata({
+    title: `${solution.name} in Mauritius`,
+    description: `${solution.tagline} ${solution.pillar.name} advisory for organisations in Mauritius from Insight.360°.`,
+    path: `/services/${solution.slug}`,
+  });
 }
 
 const steps = ["Plan", "Understand", "Assess", "Analyse", "Report", "Improve", "Follow up"];
@@ -121,7 +121,7 @@ export default async function SolutionPage({ params }: Props) {
                 <ul className="mt-6 space-y-4">
                   {solution.outcomes.map((o, i) => (
                     <li key={o} className="flex items-start gap-4">
-                      <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-teal-500 font-display text-sm font-bold">{i + 1}</span>
+                      <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-teal-600 font-display text-sm font-bold">{i + 1}</span>
                       <span className="pt-1 text-white/85">{o}</span>
                     </li>
                   ))}
@@ -169,7 +169,7 @@ export default async function SolutionPage({ params }: Props) {
             <div className="rounded-3xl border border-teal-100 bg-teal-50 p-7">
               <h3 className="text-lg">Talk to us about {solution.shortName ?? solution.name}</h3>
               <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                Tell us about your organisation and we will come back to you with a proportionate proposal.
+                We work with organisations across Mauritius. Tell us about yours and we will come back to you with a proportionate proposal.
               </p>
               <ButtonLink href={routes.contactFor(solution.slug)} className="mt-5 w-full" arrow>
                 Make an enquiry

@@ -4,7 +4,7 @@ import { InsightsHero } from "@/components/insights/insights-hero";
 import { InsightsListing } from "@/components/insights/insights-listing";
 import { CtaBand } from "@/components/sections/cta-band";
 import { getInsightCategories, getInsightTags, insightTypeSchema, queryInsights } from "@/lib/content";
-import { pageAlternates } from "@/lib/seo";
+import { JsonLd, breadcrumbJsonLd, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ category: string }>; searchParams: Promise<{ type?: string }> };
 
@@ -17,11 +17,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
   const match = (await getInsightCategories()).find((c) => c.slug === category);
   if (!match) return {};
-  return {
-    title: `${match.name} insights`,
-    description: `Articles, guides, videos and resources from Insight.360° on ${match.name.toLowerCase()}.`,
-    alternates: pageAlternates(`/insights/category/${category}`),
-  };
+  return pageMetadata({
+    title: `${match.name} Insights and Guides`,
+    description: `Practical articles, guides and resources on ${match.name.toLowerCase()} from Insight.360°, independent business advisors in Mauritius.`,
+    path: `/insights/category/${category}`,
+  });
 }
 
 export default async function CategoryPage({ params, searchParams }: Props) {
@@ -36,6 +36,12 @@ export default async function CategoryPage({ params, searchParams }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Insights", path: "/insights" },
+          { name: match.name, path: `/insights/category/${category}` },
+        ])}
+      />
       <InsightsHero
         title={
           <>

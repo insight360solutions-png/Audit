@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import type { FaqItem, Insight, Pillar, SiteSettings, Solution } from "@/lib/content";
 
@@ -12,11 +13,66 @@ export function abs(path: string) {
   return `${siteConfig.url}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
-/** Canonical + RSS discovery for every page (Next replaces, not merges, `alternates`). */
+/** Canonical, hreflang and RSS discovery for a page (Next replaces, not merges, `alternates`). */
 export function pageAlternates(canonical: string) {
   return {
     canonical,
+    languages: { "en-MU": abs(canonical), "x-default": abs(canonical) },
     types: { "application/rss+xml": abs("/feed.xml") },
+  };
+}
+
+const clip = (text: string, max = 160) => (text.length <= max ? text : `${text.slice(0, max - 1).replace(/\s+\S*$/, "")}…`);
+
+/**
+ * Complete per-page metadata. Next does not merge `openGraph` / `twitter`
+ * from the layout, so every page sets its own title, description and URL
+ * here; otherwise shares and crawlers would see the home page's values.
+ */
+export function pageMetadata({
+  title,
+  absoluteTitle,
+  description,
+  path,
+  type = "website",
+  noindex = false,
+  image = "/opengraph-image",
+  openGraph = {},
+}: {
+  /** Page title; the layout template appends " | Insight.360°". */
+  title?: string;
+  /** Full title used as-is (e.g. the home page). */
+  absoluteTitle?: string;
+  description: string;
+  path: string;
+  type?: "website" | "article";
+  noindex?: boolean;
+  /**
+   * Share image. Defaults to the site-wide generated image; pass null when the
+   * route has its own opengraph-image file (e.g. insights), which Next adds.
+   */
+  image?: string | null;
+  openGraph?: Record<string, unknown>;
+}): Metadata {
+  const fullTitle = absoluteTitle ?? `${title} | ${siteConfig.name}`;
+  const desc = clip(description);
+  const images = image ? [{ url: image, width: 1200, height: 630, alt: `${siteConfig.name} – ${siteConfig.tagline}` }] : undefined;
+  return {
+    title: absoluteTitle ? { absolute: absoluteTitle } : title,
+    description: desc,
+    alternates: pageAlternates(path),
+    openGraph: {
+      type,
+      url: abs(path),
+      siteName: siteConfig.name,
+      locale: siteConfig.locale,
+      title: fullTitle,
+      description: desc,
+      ...(images ? { images } : {}),
+      ...openGraph,
+    },
+    twitter: { card: "summary_large_image", title: fullTitle, description: desc, ...(images ? { images } : {}) },
+    ...(noindex ? { robots: { index: false, follow: true } } : {}),
   };
 }
 
